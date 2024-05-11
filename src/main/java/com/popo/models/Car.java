@@ -2,7 +2,12 @@ package com.popo.models;
 
 import jakarta.persistence.Entity;
 
-import com.geta.dao.entity.Relation;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity(name = "car")
 @Table(name = "car")
+
 public class Car {
 
 	@Id
@@ -27,6 +33,14 @@ public class Car {
 	@Column
 	public Double kilometrage;
 
+	public LocalTime publishedOn;
+
+	public Date date;
+
+	public Timestamp timestamp;
+	// @Column
+	// public Period presalePeriod;
+
 	public Car(Long id, String imma, String color, Double kilometrage) {
 		this.id = id;
 		this.imma = imma;
@@ -35,6 +49,7 @@ public class Car {
 	}
 
 	public Car() {
+
 	}
 
 	public void setId(Long id) {

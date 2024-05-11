@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.sql.Connection;
 import java.util.List;
 import com.popo.utils.Status;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import com.geta.utils.upload.FileHelper;
+import com.popo.connection.Connect;
 import com.popo.models.Car;
 import com.popo.models.Tree;
 
@@ -36,9 +40,14 @@ public class Controller {
 	}
 
 	@PostMapping
+	// @Transactional
 	public Status add(@RequestBody Car car) {
-		Car res = carRepository.save(car);
-		return Status.ok("Car inserted succesfully", res);
+		for (int i = 0; i < 3; i++) {
+			Car res = carRepository.save(car);
+			if (i == 2)
+				throw new RuntimeException("Car already exists");
+		}
+		return Status.ok("Car inserted succesfully", null);
 	}
 
 	@PostMapping("/file")
@@ -47,10 +56,17 @@ public class Controller {
 		return Status.ok("Inserted ", null);
 	}
 
-	@GetMapping
-	public Status getAll() {
+	@GetMapping("/car")
+	public Status get() throws Exception {
 		List<Car> res = carRepository.findAll();
+		return Status.ok("", res);
+	}
 
+	@GetMapping
+	public Status getAll() throws Exception {
+		Connection connection = Connect.getConnectionPostgresql();
+		List<Tree> res = new Tree().selectAll(connection);
+		connection.close();
 		return Status.ok("", res);
 	}
 
@@ -64,7 +80,6 @@ public class Controller {
 	@GetMapping("/{page}/count/{count}")
 	public Status getElements(@PathVariable("page") int page, @PathVariable("count") int count) {
 		Pageable pageable = PageRequest.of(page, count);
-
 		List<Car> res = carRepository.findAll(pageable).getContent();
 		return Status.ok("", res);
 	}

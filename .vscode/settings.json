@@ -18,6 +18,15 @@
             "name": "fds",
             "database": "naina_entity",
             "username": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Eval",
+            "database": "eval",
+            "username": "postgres"
         }
     ]
 }

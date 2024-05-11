@@ -14,11 +14,8 @@
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/repository/VaikaRepository.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Config/SecurityConfig.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/models/Tree.java
-/home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/models/People.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Models/User.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/utils/Status.java
-/home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/repository/PeopleCarRepository.java
-/home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/models/PeopleCar.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/models/Car.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/connection/Connect.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Auth/AuthController.java
@@ -29,6 +26,5 @@
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Request/RefreshTokenRequest.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/controllers/Controller.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Auth/AuthenticationResponse.java
-/home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/repository/PeopleRepository.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/models/Blob.java
 /home/jaona/myfiles/S6/Eval/Backend/src/main/java/com/popo/UserAuth/Enum/Role.java

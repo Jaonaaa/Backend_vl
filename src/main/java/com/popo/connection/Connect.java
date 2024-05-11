@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Connect {
 
-    static String database_name = "caching";
+    static String database_name = "eval";
     static String username = "postgres";
     static String password = "popo";
 
