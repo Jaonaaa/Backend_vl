@@ -1,0 +1,48 @@
+[
+  {
+    "buildingType": { "id": 252 },
+    "label": "Travaux generaux",
+    "childWorksWorksPredefinedBy": [
+      {
+        "buildingType": { "id": 252 },
+        "label": "Decapage des terrains meubles",
+        "worksInDevisDetails": {
+          "unit": {
+            "id": 102
+          },
+          "quantity": 2.0,
+          "pu": 200
+        }
+      },
+      {
+        "buildingType": { "id": 252 },
+        "label": "ZZZ des terrains meubles",
+        "worksInDevisDetails": {
+          "unit": {
+            "id": 102
+          },
+          "quantity": 2.0,
+          "pu": 200
+        }
+      },
+      {
+        "buildingType": { "id": 252 },
+        "label": "XXX des terrains meubles",
+        "childWorksWorksPredefinedBy": [
+          {
+            "buildingType": { "id": 252 },
+            "label": "Sousss",
+            "worksInDevisDetails": {
+              "unit": {
+                "id": 103
+              },
+              "quantity": 2.0,
+              "pu": 200
+            }
+          }
+        ]
+      }
+    ],
+    "worksInDevisDetails": {}
+  }
+]

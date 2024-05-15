@@ -7,6 +7,19 @@ DROP TABLE car;
 SELECT *
 FROM car;
 SELECT *
+FROM car
+WHERE timestamp::TIME = '10:00';
+------
+SELECT EXTRACT(
+        YEAR
+        FROM date
+    )
+FROM car;
+----
+SELECT *
+FROM car
+WHERE timestamp BETWEEN '2023-03-15T00:00:00' AND '2023-03-15T13:00:00';
+SELECT *
 FROM test;
 INSERT INTO test (id, name)
 VALUES (1, 'name:character varying');

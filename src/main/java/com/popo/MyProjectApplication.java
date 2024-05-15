@@ -1,8 +1,14 @@
 package com.popo;
 
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.popo.models.temp.MaisonTravaux;
 
 @SpringBootApplication
 public class MyProjectApplication {
@@ -25,6 +35,7 @@ public class MyProjectApplication {
 		config.addAllowedHeader("*");
 
 		source.registerCorsConfiguration("/**", config);
+
 		return new CorsFilter(source);
 	}
 

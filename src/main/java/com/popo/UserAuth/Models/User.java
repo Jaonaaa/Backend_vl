@@ -46,6 +46,8 @@ public class User implements UserDetails {
     @Column(name = "lastname")
     String lastname;
 
+    @Column(name = "numero")
+    String numero;
 
     @Enumerated(EnumType.STRING)
     Role roles;

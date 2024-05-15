@@ -32,7 +32,15 @@ public class AuthService {
         public AuthenticationResponse register(RegisterRequest request) {
                 User user = User.builder().firstname(request.getFirstname()).lastname(request.getLastname())
                                 .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                                .roles(Role.ADMIN).build();
+                                .roles(Role.valueOf(request.getRole())).build();
+                user = repository.save(user);
+                return getAuthResponse(user);
+        }
+
+        public AuthenticationResponse registerClient(RegisterRequest request) {
+                User user = User.builder().firstname(request.getFirstname()).lastname(request.getLastname())
+                                .email(repository.count() + "@gmail.com").password(passwordEncoder.encode("popo"))
+                                .roles((Role.USER)).numero(request.getNumero()).build();
                 user = repository.save(user);
                 return getAuthResponse(user);
         }
@@ -46,6 +54,33 @@ public class AuthService {
                                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
                 User user = repository.findByEmail(request.getEmail()).orElseThrow();
                 return getAuthResponse(user);
+        }
+
+        public AuthenticationResponse authenticateClient(AuthenticationRequest request) {
+                Optional<User> userOtp = repository.findByNumero(request.getNumero());
+                User user = null;
+
+                if (userOtp.isPresent())
+                        user = userOtp.get();
+                else {
+                        user = repository.save(User.builder().firstname(request.getNumero()).lastname("")
+                                        .email(repository.count() + "@gmail.com").password("popo")
+                                        .roles((Role.USER)).numero(request.getNumero()).build());
+
+                }
+                if (user.getRoles().equals(Role.ADMIN))
+                        throw new RuntimeException("Authentification as a client is not allowed");
+                // authenticationManager.authenticate(
+                // new UsernamePasswordAuthenticationToken(user.getEmail(),
+                // user.getPassword()));
+                return getAuthResponse(user);
+        }
+
+        public User saveUserClient(String numero) {
+                User user = repository.save(User.builder().firstname(numero).lastname("")
+                                .email(repository.count() + "@gmail.com").password("popo")
+                                .roles((Role.USER)).numero(numero).build());
+                return user;
         }
 
         public AuthenticationResponse getAuthResponse(User user) {

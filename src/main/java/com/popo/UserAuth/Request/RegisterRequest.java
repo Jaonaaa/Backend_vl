@@ -18,4 +18,5 @@ public class RegisterRequest {
     private String society;
     private String role;
     private Long society_id;
+    private String numero;
 }

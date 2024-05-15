@@ -2,6 +2,7 @@ package com.popo.UserAuth.Auth;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,12 @@ public class AuthController {
         return ResponseEntity.ok(service.register(request));
     }
 
+    @PostMapping("/register/client")
+    public ResponseEntity<Object> registerClient(
+            @RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(service.registerClient(request));
+    }
+
     @PostMapping("/check")
     public ResponseEntity<Object> checkEmailAvailable(
             @PathParam(value = "email") String email) {
@@ -44,6 +51,13 @@ public class AuthController {
             @RequestBody AuthenticationRequest request) {
         ///
         return ResponseEntity.ok(service.authenticate(request));
+    }
+
+    @PostMapping("/authenticate/client")
+    public ResponseEntity<AuthenticationResponse> authenticateClient(
+            @RequestBody AuthenticationRequest request) {
+        ///
+        return ResponseEntity.ok(service.authenticateClient(request));
     }
 
     @PostMapping("/checkTokenStatus")
@@ -70,6 +84,12 @@ public class AuthController {
             return ResponseEntity.ok(Status.error(e.getMessage(), null));
         }
 
+    }
+
+    @ExceptionHandler(Exception.class)
+    public Status handleException(Exception e) {
+        e.printStackTrace();
+        return Status.error(e.getMessage(), null);
     }
 
 }
