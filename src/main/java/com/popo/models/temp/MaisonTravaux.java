@@ -134,6 +134,7 @@ public class MaisonTravaux {
             if (parts.length < 4) {
                 continue;
             }
+            // split description
             List<String> descriptions = Arrays.asList(parts[1].trim().split(","));
             BuildingType buildingType = BuildingType.builder().label(parts[0])
                     .descriptions(descriptions).surface(Double.parseDouble(parts[2]))

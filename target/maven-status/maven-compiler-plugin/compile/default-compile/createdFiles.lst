@@ -22,6 +22,7 @@ com/popo/UserAuth/Auth/CheckStatusResponse$CheckStatusResponseBuilder.class
 com/popo/utils/Status$StatusBuilder.class
 com/popo/UserAuth/Service/RefreshTokenService.class
 com/popo/UserAuth/Request/AuthenticationRequest$AuthenticationRequestBuilder.class
+com/popo/services/DevisService.class
 com/popo/utils/Status.class
 com/popo/UserAuth/Request/RegisterRequest.class
 com/popo/UserAuth/Response/RegisterData$RegisterDataBuilder.class

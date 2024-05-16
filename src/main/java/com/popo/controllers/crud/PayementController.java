@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.io.File;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import com.popo.utils.Status;
 
@@ -39,6 +41,7 @@ public class PayementController {
 	@DeleteMapping("/{id}")
 	public Status delete(@PathVariable(name = "id") Long id) {
 		payementRepository.deleteById(id);
+		Timestamp p = Timestamp.from(Instant.now());
 		return Status.ok("Payement deleted !!", null);
 	}
 

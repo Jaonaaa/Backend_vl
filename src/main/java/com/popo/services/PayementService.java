@@ -26,6 +26,8 @@ public class PayementService {
         }
         User user = userRepository.findById((long) payement.getId_user()).get();
 
+        payement.setDevis(devisRepository.findById(Long.valueOf("" + payement.getId_devis())).get());
+
         Devis devisTarget = devisRepository.findById(payement.getDevis().getId()).get();
         Double totalPayed = getTotalPayement(devisTarget);
 

@@ -1,6 +1,7 @@
 package com.popo.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Vector;
 
 import org.springframework.stereotype.Service;
@@ -102,6 +103,17 @@ public class ImportService {
     @Transactional
     public void importPaiement(List<PaiementImport> paiementImports) {
         for (PaiementImport paiementImport : paiementImports) {
+
+            if (paiementImport.getRefPaiement() != null) {
+                Optional<Payement> paiementCheck = payementRepository
+                        .findByRefPaiement(paiementImport.getRefPaiement().trim());
+
+                if (paiementCheck.isPresent()) {
+                    System.out.println("Payement already there ref" + paiementCheck.get().getRefPaiement() + "\n");
+                    continue;
+                }
+            }
+
             Devis devis = devisRepository.findByRefDevis(paiementImport.getRefDevis().trim());
             Payement payement = Payement.builder().amount(paiementImport.getMontant()).client(devis.getClient())
                     .refPaiement(paiementImport.getRefPaiement())

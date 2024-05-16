@@ -20,6 +20,7 @@ import org.springframework.web.filter.CorsFilter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.popo.models.temp.MaisonTravaux;
+import com.popo.utils.Status;
 
 @SpringBootApplication
 public class MyProjectApplication {
@@ -85,6 +86,9 @@ public class MyProjectApplication {
 		// LocalDateTime currentDateTime = LocalDateTime.now();
 		// LocalDateTime targetDateTime = currentDateTime.plus(duration);
 		// Timestamp timestamp = Timestamp.valueOf(targetDateTime);
+
+		// Double v = Status.getPercent(120.0, 20.0);
+		// System.out.println(v);
 
 		SpringApplication.run(MyProjectApplication.class, args);
 	}

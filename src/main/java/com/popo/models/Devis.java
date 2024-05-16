@@ -45,6 +45,9 @@ public class Devis {
     @JoinColumn(name = "id_lieu")
     public Lieu lieu;
 
+    @Column
+    public String lieu_label;
+
     @ManyToOne
     @JoinColumn(name = "id_building_type")
     public BuildingType buildingType;
@@ -77,6 +80,9 @@ public class Devis {
     @Transient
     Double restToPay;
 
+    @Transient
+    List<Payement> my_payements;
+
     // @jakarta.persistence.ManyToOne
     // @jakarta.persistence.JoinColumn(name = "id_finition_by_building_type")
     // public FinitionByBuildingType finitionByBuildingType;
@@ -106,16 +112,18 @@ public class Devis {
     public Devis() {
     }
 
-    public Devis(Long id, User client, int id_user, String numero_user, Lieu lieu, BuildingType buildingType,
-            BuildingFinition buildingFinition, Timestamp creation_date, Timestamp begin_date, Double total_price,
-            String refDevis, Timestamp end_date, String time_label, Double restToPay, Double tauxFinition,
-            String buildingFinitionLabel, Double buildingFinitionPercent, String buildingTypeLabel,
-            Double buildingTypeDuration, Double buildingTypePrice, List<DevisSetDetails> devisSetDetails) {
+    public Devis(Long id, User client, int id_user, String numero_user, Lieu lieu, String lieu_label,
+            BuildingType buildingType, BuildingFinition buildingFinition, Timestamp creation_date, Timestamp begin_date,
+            Double total_price, String refDevis, Timestamp end_date, String time_label, Double restToPay,
+            List<Payement> my_payements, Double tauxFinition, String buildingFinitionLabel,
+            Double buildingFinitionPercent, String buildingTypeLabel, Double buildingTypeDuration,
+            Double buildingTypePrice, List<DevisSetDetails> devisSetDetails) {
         this.id = id;
         this.client = client;
         this.id_user = id_user;
         this.numero_user = numero_user;
         this.lieu = lieu;
+        this.lieu_label = lieu_label;
         this.buildingType = buildingType;
         this.buildingFinition = buildingFinition;
         this.creation_date = creation_date;
@@ -125,6 +133,7 @@ public class Devis {
         this.end_date = end_date;
         this.time_label = time_label;
         this.restToPay = restToPay;
+        this.my_payements = my_payements;
         this.tauxFinition = tauxFinition;
         this.buildingFinitionLabel = buildingFinitionLabel;
         this.buildingFinitionPercent = buildingFinitionPercent;

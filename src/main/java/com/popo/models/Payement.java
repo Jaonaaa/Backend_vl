@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.popo.UserAuth.Models.User;
 
 import jakarta.persistence.Column;
@@ -39,7 +40,11 @@ public class Payement {
 
 	@jakarta.persistence.ManyToOne
 	@jakarta.persistence.JoinColumn(name = "id_devis", nullable = true)
+	@JsonIgnore
 	public Devis devis;
+
+	@Transient
+	int id_devis;
 
 	@Column
 	public Double amount;
@@ -50,13 +55,14 @@ public class Payement {
 	public Payement() {
 	}
 
-	public Payement(Long id, Timestamp payement_time, User client, int id_user, Devis devis, Double amount,
-			String refPaiement) {
+	public Payement(Long id, Timestamp payement_time, User client, int id_user, Devis devis, int id_devis,
+			Double amount, String refPaiement) {
 		this.id = id;
 		this.payement_time = payement_time;
 		this.client = client;
 		this.id_user = id_user;
 		this.devis = devis;
+		this.id_devis = id_devis;
 		this.amount = amount;
 		this.refPaiement = refPaiement;
 	}

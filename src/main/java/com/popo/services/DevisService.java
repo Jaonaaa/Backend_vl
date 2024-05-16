@@ -12,10 +12,12 @@ import com.popo.models.BuildingFinition;
 import com.popo.models.BuildingType;
 import com.popo.models.Devis;
 import com.popo.models.DevisSetDetails;
+import com.popo.models.Payement;
 import com.popo.repository.BuildingFinitionRepository;
 import com.popo.repository.BuildingTypeRepository;
 import com.popo.repository.DevisRepository;
 import com.popo.repository.DevisSetDetailsRepository;
+import com.popo.repository.PayementRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +32,7 @@ public class DevisService {
     private final WorkPredefinedByService workPredefinedByService;
     private final DevisSetDetailsRepository devisSetDetailsRepository;
     private final PayementService payementService;
+    private final PayementRepository payementRepository;
 
     public java.util.List<Devis> getAllOfMyDevis(int id_user) {
         List<Devis> devis = devisRepository.getByIdUser(id_user);
@@ -40,6 +43,8 @@ public class DevisService {
             // reste a payer
             Double totalPayed = payementService.getTotalPayement(dev);
             dev.setRestToPay(dev.getTotal_price() - totalPayed);
+            List<Payement> payements = payementRepository.findAllByDevis(dev);
+            dev.setMy_payements(payements);
         }
         return devis;
     }
@@ -74,7 +79,8 @@ public class DevisService {
         devis.setBuildingFinitionPercent(buildingFinition.getPercent());
         devis.setBuildingTypeLabel(buildingType.getLabel());
         devis.setBuildingTypeDuration(buildingType.getDuration());
-
+        if (devis.getLieu() != null)
+            devis.setLieu_label(devis.getLieu().label);
         devis = devisRepository.save(devis);
         workPredefinedByService.registerDeviseDetails(devis);
         return devis;
@@ -95,6 +101,9 @@ public class DevisService {
         devis.setBuildingFinitionPercent(buildingFinition.getPercent());
         devis.setBuildingTypeLabel(buildingType.getLabel());
         devis.setBuildingTypeDuration(buildingType.getDuration());
+
+        if (devis.getLieu() != null)
+            devis.setLieu_label(devis.getLieu().label);
 
         devis = devisRepository.save(devis);
         workPredefinedByService.registerDeviseDetails(devis);

@@ -35,9 +35,9 @@ public class WorkPredefinedByService {
                 WorksInDevisDetails details = addDetails(worksPredefinedBy);
                 worksPredefinedBy.setWorksInDevisDetails(details);
             }
-
             worksPredefinedBy.setParentWorksPredefinedBy(parent);
 
+            // worksPredefinedBy.setCodeTravaux("TT");
             WorksPredefinedBy w = worksPredefinedByRepository.save(worksPredefinedBy);
             if (w.getChildWorksWorksPredefinedBy() != null)
                 if (w.getChildWorksWorksPredefinedBy().size() > 0) {
@@ -90,7 +90,6 @@ public class WorkPredefinedByService {
                     rDD(devis, workPredefined, newD);
                 }
             }
-
         }
     }
 

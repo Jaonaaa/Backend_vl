@@ -17,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,6 +52,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     Role roles;
+
+    @Transient
+    int devis_count;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

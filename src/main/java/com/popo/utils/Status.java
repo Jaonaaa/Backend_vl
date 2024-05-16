@@ -41,4 +41,10 @@ public class Status {
 		return Status.builder().status("ok").message_list(messages).data(data).build();
 	}
 
+	public static Double getPercent(Double value, Double percent) {
+		if (value == 0 || percent == 0)
+			return 0.0;
+		return percent * value / 100;
+	}
+
 }
